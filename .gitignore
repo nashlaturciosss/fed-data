@@ -1,0 +1,15 @@
+# Ignore all zip files in the calitaliq_downloads directory
+calitaliq_downloads/*.zip
+
+# Ignore all csv files in the csv directory and its subdirectories
+csv/**/*.csv
+
+#ignore all csv files in main directory
+./*.csv
+
+# Ignore .idea file
+.idea/
+
+# Ignore all .DS_Store files
+.DS_Store
+*/.DS_Store
