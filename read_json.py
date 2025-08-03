@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # === CONFIG ===
-bucket_name = "fed-data-storage"
+bucket_name = "fed-data-testing"
 prefix = "json/"
 insiders_dir = Path("csv/insiders")
 securities_dir = Path("csv/securities")
@@ -217,11 +217,7 @@ def main():
             ocr_response = OCRResponse.model_validate(json_data)
             markdown = get_combined_markdown(ocr_response)
 
-            print(markdown)
-
-            return
-
-            # bank_name, year, presence = extract_from_md(markdown, name)
+            bank_name, year, presence = extract_from_md(markdown, name)
             update_tracking(name, "passed", bank_name=bank_name, year=year, presence=presence)
 
         except Exception as e:

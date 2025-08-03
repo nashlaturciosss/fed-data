@@ -14,6 +14,7 @@ load_dotenv()
 import json
 
 
+pages_to_scrape = [1]
 file = open("failed_pages.csv", "w", newline="")
 csv_writer = csv.writer(file)
 csv_writer.writerow(["page", "error"])
@@ -120,7 +121,7 @@ for cookie in cookies:
 
 # Step 3: Go to authenticated search results page
 driver.get(
-    "https://www.capitaliq.spglobal.com/apisv3/spg-webplatform-core/search/searchResults?vertical=institutional_filingsrpt-gss&q=y6")
+    "https://www.capitaliq.spglobal.com/apisv3/spg-webplatform-core/search/searchResults?vertical=institutional_filingsrpt-gss")
 wait = WebDriverWait(driver, 10)
 time.sleep(5)
 
@@ -143,17 +144,6 @@ try:
 except Exception as e:
     print(f"❌ Step 2 failed (click div with title='Custom'): {e}")
 
-# # Step 3: Click "Select Filing Date" again to expose full date picker
-# try:
-#     filing_date_btn = wait.until(EC.element_to_be_clickable(
-#         (By.XPATH, '//button[contains(@class, "css-1swziob") and @title="Select Filing Date"]')
-#     ))
-#     filing_date_btn.click()
-#     print("✅ Clicked 'Select Filing Date' again.")
-# except Exception as e:
-#     print(f"❌ Step 3 failed (re-click 'Select Filing Date'): {e}")
-
-# Step 4: 'From' date input (type="input", name="date-range-selector-from-value")
 try:
     from_input = wait.until(EC.presence_of_element_located(
         (By.NAME, "date-range-selector-from-value")
@@ -288,7 +278,7 @@ def record_failed_page(page, error_msg):
         file.flush()
 
 
-for page in  [1]:
+for page in  pages_to_scrape:
     print(f"\n📄 Processing Page {page}")
     try:
         print("ATTEMPTING TO CLICK ALERTS")
@@ -382,7 +372,7 @@ for page in  [1]:
                 newest_zip = max(zip_files, key=os.path.getctime)
                 s3_key = f"documents/{os.path.basename(newest_zip)}"
                 try:
-                    boto3.client('s3').upload_file(newest_zip, "fed-data-storage", s3_key)
+                    boto3.client('s3').upload_file(newest_zip, "fed-data-testing", s3_key)
                     print(f"✅ Uploaded {newest_zip} to S3.")
                     os.remove(newest_zip)
                 except Exception as e:

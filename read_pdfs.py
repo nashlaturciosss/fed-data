@@ -20,7 +20,7 @@ client = Mistral(api_key=api_key)
 # Initialize the S3 client
 s3 = boto3.client("s3")
 
-bucket_name = "fed-data-storage"
+bucket_name = "fed-data-testing"
 prefix = "documents/"
 
 PROCESSED_FILE = "processed_files.csv"
@@ -76,9 +76,9 @@ def read_pdf(pdf_bytes: bytes, name: str):
 
     response_dict = json.loads(pdf_response.model_dump_json())
 
-    output_file = Path(f"./json_downloads/{name}.pdf")
+    output_file = Path(f"./json/{name}.json")
     output_file.write_text(json.dumps(response_dict, indent=2))
-    s3.upload_file(str(output_file), "fed-data-storage", f"json/{output_file.name}")
+    s3.upload_file(str(output_file), "fed-data-testing", f"json/{output_file.name}")
     output_file.unlink()  # remove local JSON file
 
 def main():
