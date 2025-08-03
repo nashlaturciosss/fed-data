@@ -14,6 +14,7 @@ load_dotenv()
 import json
 
 
+#if you want to add a range do list(range(1, 20))—scapes pages 1-20
 pages_to_scrape = [1]
 file = open("failed_pages.csv", "w", newline="")
 csv_writer = csv.writer(file)
