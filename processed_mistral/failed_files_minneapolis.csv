@@ -1,0 +1,6 @@
+identifier,error_message
+https://www.minneapolisfed.org/~/media/Y6Reports/2021/y6report_1246805_CENTRAL-BC_2021.pdf,"SDKError: API error occurred: Status 400
+{""object"":""error"",""message"":""File could not be fetched from url 'https://www.minneapolisfed.org/~/media/Y6Reports/2021/y6report_1246805_CENTRAL-BC_2021.pdf'"",""type"":""invalid_request_file"",""param"":null,""code"":""3310""}"
+https://www.minneapolisfed.org/~/media/Y6Reports/2018/y6report_1248162_BNCCORP_2018.pdf,RemoteProtocolError: peer closed connection without sending complete message body (incomplete chunked read)
+https://www.minneapolisfed.org/~/media/Y6Reports/2021/y6report_1246805_CENTRAL-BC_2021.pdf,"SDKError: API error occurred: Status 400
+{""object"":""error"",""message"":""File could not be fetched from url 'https://www.minneapolisfed.org/~/media/Y6Reports/2021/y6report_1246805_CENTRAL-BC_2021.pdf'"",""type"":""invalid_request_file"",""param"":null,""code"":""3310""}"
